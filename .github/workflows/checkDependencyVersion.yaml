@@ -23,4 +23,9 @@ jobs:
         run: mvn install -DskipTests
 
       - name: Check Dependency Version
-        run: mvn dependency:list | grep triggering-action-from-code-1.0-SNAPSHOT
+        run: |
+          echo "Listing all dependencies:"
+          mvn dependency:list
+          echo "-----------------------------------"
+          echo "Searching for your artifact..."
+          mvn dependency:list | grep "triggering-action" || (echo "Artifact NOT found!" && exit 1)
