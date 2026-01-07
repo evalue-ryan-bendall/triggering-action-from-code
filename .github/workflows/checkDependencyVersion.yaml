@@ -24,8 +24,7 @@ jobs:
 
       - name: Check Dependency Version
         run: |
-          echo "Listing all dependencies:"
-          mvn dependency:list
           echo "-----------------------------------"
           echo "Searching for your artifact..."
           mvn dependency:list | grep "triggering-action" || (echo "Artifact NOT found!" && exit 1)
+          echo "ARTIFACT FOUND"
