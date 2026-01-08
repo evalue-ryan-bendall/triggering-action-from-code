@@ -1,0 +1,16 @@
+name: External App Trigger
+on:
+  repository_dispatch:
+    types: [trigger]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Process Payload
+        run: |
+          echo "Triggered by: ${{ github.event.client_payload.user }}"
+          echo "Message: ${{ github.event.client_payload.message }}"
